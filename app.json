@@ -1,0 +1,13 @@
+{
+  "expo": {
+    "scheme": "acme",
+    "web": {
+      "bundler": "metro"
+    },
+    "name": "Health-sync",
+    "slug": "Health-sync",
+    "plugins": [
+      "expo-router"
+    ]
+  }
+}
