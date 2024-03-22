@@ -23,7 +23,7 @@ const Profile = () => {
   return (
     <View style={styles.container}>
       <Text style={{ textAlign: 'center' }}>
-        Good morning {user.firstName} {user.lastName}!
+        Good Afternoon {user.firstName} {user.lastName}!
       </Text>
 
       {/* <TextInput placeholder="First Name" value={firstName} onChangeText={setFirstName} style={styles.inputField} />
