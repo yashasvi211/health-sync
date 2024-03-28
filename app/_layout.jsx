@@ -28,14 +28,14 @@ const InitialLayout = () => {
 };
 
 const tokenCache = {
-  async getToken(key: string) {
+  async getToken(key) {
     try {
       return SecureStore.getItemAsync(key);
     } catch (err) {
       return null;
     }
   },
-  async saveToken(key: string, value: string) {
+  async saveToken(key, value) {
     try {
       return SecureStore.setItemAsync(key, value);
     } catch (err) {
