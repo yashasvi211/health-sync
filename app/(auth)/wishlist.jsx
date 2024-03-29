@@ -1,53 +1,55 @@
-import { View, Text, Button, TextInput, StyleSheet } from 'react-native';
-import { useState } from 'react';
-import { useUser } from '@clerk/clerk-expo';
+import React from "react";
+import { View, Text, StyleSheet } from "react-native";
+import History_Card from "../../components/History_Card";
+import { ScrollView } from "react-native-gesture-handler";
 
-const Profile = () => {
-  const { user } = useUser();
-  const [firstName, setFirstName] = useState(user.firstName);
-  const [lastName, setLastName] = useState(user.lastName);
-
-  const onSaveUser = async () => {
-    try {
-      // This is not working!
-      const result = await user.update({
-        firstName: 'Yashasvi',
-        lastName: 'Parashar',
-      });
-      console.log('🚀 ~ file: profile.tsx:16 ~ onSaveUser ~ result:', result);
-    } catch (e) {
-      console.log('🚀 ~ file: profile.tsx:18 ~ onSaveUser ~ e', JSON.stringify(e));
-    }
-  };
-
+const History = () => {
   return (
-    <View style={styles.container}>
-      <Text style={{ textAlign: 'center' }}>
-        Good Afternoon {user.firstName} {user.lastName}!
-      </Text>
-
-      {/* <TextInput placeholder="First Name" value={firstName} onChangeText={setFirstName} style={styles.inputField} />
-      <TextInput placeholder="Last Name" value={lastName} onChangeText={setLastName} style={styles.inputField} />
-      <Button onPress={onSaveUser} title="Update account" color={'#6c47ff'}></Button> */}
-    </View>
+    <ScrollView>
+      <View style={styles.container}>
+        <Text style={styles.heading}>Upcoming Bookings:</Text>
+        <History_Card
+          Name={"Dr. AP Sharma"}
+          spa={"Oncologist"}
+          Date={"12/12/12"}
+          Time={"12:12"}
+        />
+        <Text style={styles.heading}>Previous Bookings:</Text>
+        <History_Card
+          Name={"Dr. AP Sharma"}
+          spa={"Oncologist"}
+          Date={"12/12/12"}
+          Time={"12:12"}
+        />
+        <History_Card
+          Name={"Dr. AP Sharma"}
+          spa={"Oncologist"}
+          Date={"12/12/12"}
+          Time={"12:12"}
+        />
+        <History_Card
+          Name={"Dr. AP Sharma"}
+          spa={"Oncologist"}
+          Date={"12/12/12"}
+          Time={"12:12"}
+        />
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    padding: 40,
+    backgroundColor: "#ffffff",
+    paddingHorizontal: 16,
+    paddingTop: 20,
   },
-  inputField: {
-    marginVertical: 4,
-    height: 50,
-    borderWidth: 1,
-    borderColor: '#6c47ff',
-    borderRadius: 4,
-    padding: 10,
-    backgroundColor: '#fff',
+  heading: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
   },
 });
 
-export default Profile;
+export default History;

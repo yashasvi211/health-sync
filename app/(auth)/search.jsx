@@ -1,34 +1,25 @@
-import { View, Text, Button, TextInput, StyleSheet } from 'react-native';
-import { useState } from 'react';
-import { useUser } from '@clerk/clerk-expo';
-
-const Profile = () => {
+import React, { useState } from "react";
+import SearchBar from "react-native-elements/dist/searchbar/SearchBar-ios";
+import { View, Text, StyleSheet } from "react-native";
+import { useUser } from "@clerk/clerk-expo";
+const search = () => {
+  const [search, setSearch] = useState("");
   const { user } = useUser();
-  const [firstName, setFirstName] = useState(user.firstName);
-  const [lastName, setLastName] = useState(user.lastName);
-
-  const onSaveUser = async () => {
-    try {
-      // This is not working!
-      const result = await user.update({
-        firstName: 'Yashasvi',
-        lastName: 'Parashar',
-      });
-      console.log('🚀 ~ file: profile.tsx:16 ~ onSaveUser ~ result:', result);
-    } catch (e) {
-      console.log('🚀 ~ file: profile.tsx:18 ~ onSaveUser ~ e', JSON.stringify(e));
-    }
+  const updateSearch = (search) => {
+    setSearch(search);
   };
 
   return (
     <View style={styles.container}>
-      <Text style={{ textAlign: 'center' }}>
-        Good Afternoon {user.firstName} {user.lastName}!
-      </Text>
-
-      {/* <TextInput placeholder="First Name" value={firstName} onChangeText={setFirstName} style={styles.inputField} />
-      <TextInput placeholder="Last Name" value={lastName} onChangeText={setLastName} style={styles.inputField} />
-      <Button onPress={onSaveUser} title="Update account" color={'#6c47ff'}></Button> */}
+      <View style={styles.view}>
+        <SearchBar
+          placeholder="Type Here..."
+          onChangeText={updateSearch}
+          value={search}
+        />
+      </View>
+      <Text style={styles.heading}>Recomendation</Text>
+      <Text>{user.firstName}</Text>
     </View>
   );
 };
@@ -36,18 +27,34 @@ const Profile = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    padding: 40,
+    backgroundColor: "#ffffff",
+    elevation: 5,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
   },
-  inputField: {
-    marginVertical: 4,
-    height: 50,
-    borderWidth: 1,
-    borderColor: '#6c47ff',
-    borderRadius: 4,
-    padding: 10,
-    backgroundColor: '#fff',
+  view: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 50,
+    marginTop: 25,
+    marginLeft: 10,
+    marginRight: 10,
+    marginBottom: 24,
+    elevation: 3,
+    shadowColor: "#000",
+
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+  },
+  heading: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+    marginLeft: 10,
   },
 });
 
-export default Profile;
+export default search;

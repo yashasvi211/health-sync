@@ -119,12 +119,12 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignItems: 'center',
   },
-  // You might want to add styles for the signupButton and other elements
+  
   buttonText: {
     color: '#fff',
     fontWeight: 'bold',
   },
-  // Other styles...
+   
 });
 
 export default Login;
