@@ -1,23 +1,23 @@
-import { View, Text, Button, TextInput, StyleSheet } from "react-native";
+import { View, Button, StyleSheet } from "react-native";
 import { useState } from "react";
-import { useUser } from "@clerk/clerk-expo";
-import Banner from "../../components/Banner";
-const Profile = () => {
-  const { user } = useUser();
-  const onSaveUser = () => {
-    console.log(user.fullName);
-    console.log(user.fullName);
-    console.log(user.fullName);
+import { useUser, useAuth } from "@clerk/clerk-expo";
+
+const LogoutButton = ({ title }) => {
+  const { signOut } = useAuth();
+
+  const doLogout = () => {
+    signOut();
   };
 
+  return <Button onPress={doLogout} title={title} color="#6c47ff" />;
+};
+
+const Profile = () => {
+  const { user } = useUser();
+
   return (
-    <View style={styles.container}>
-      <Button
-        onPress={onSaveUser}
-        title="Update account"
-        color={"#6c47ff"}
-      ></Button>
-      <Banner imageUri={imageUrl} />
+    <View>
+      <LogoutButton title="Logout" />
     </View>
   );
 };

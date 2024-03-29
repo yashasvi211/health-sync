@@ -13,18 +13,12 @@ const App = () => {
   };
 
   return (
-    <>
-      <SafeAreaView>
-        <Text>
-          The Hero is the villan in any other's life and same goes for villan it
-          maybe hero of someone's life
-        </Text>
-      </SafeAreaView>
-      <View style={styles.container}>
-        <Text style={styles.text}>Count: {Math.pow(2, pixel)}</Text>
-        <Button onPress={incrementCount} title="Increment" />
-      </View>
-    </>
+    <SafeAreaView>
+      <Text>
+        The Hero is the villan in any other's life and same goes for villan it
+        maybe hero of someone's life
+      </Text>
+    </SafeAreaView>
   );
 };
 

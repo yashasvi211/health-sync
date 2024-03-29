@@ -55,8 +55,6 @@ const Home = () => {
           <Banner imageUri={require("../../assets/doctor.webp")} />
           <Banner imageUri={require("../../assets/doctor.webp")} />
           <Banner imageUri={require("../../assets/doctor.webp")} />
-          <Banner imageUri={require("../../assets/doctor.webp")} />
-          <Banner imageUri={require("../../assets/doctor.webp")} />
         </View>
       </ScrollView>
     </View>
