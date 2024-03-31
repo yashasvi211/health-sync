@@ -1,5 +1,4 @@
-import { View, Button, StyleSheet } from "react-native";
-import { useState } from "react";
+import { View, Button, Text, StyleSheet } from "react-native";
 import { useUser, useAuth } from "@clerk/clerk-expo";
 
 const LogoutButton = ({ title }) => {
@@ -9,14 +8,30 @@ const LogoutButton = ({ title }) => {
     signOut();
   };
 
-  return <Button onPress={doLogout} title={title} color="#6c47ff" />;
+  return (
+    <View style={styles.buttonContainer}>
+      <Button onPress={doLogout} title={title} color="#6c47ff" />
+    </View>
+  );
 };
 
 const Profile = () => {
   const { user } = useUser();
+  const name = user.fullName;
+  const id = user.id;
+  const Fn = user.firstName;
+  const Ln = user.lastName;
+  const email = user.primaryEmailAddress.emailAddress;
+  const showId = id.substring(5); // Extracting from the 6th character
 
   return (
-    <View>
+    <View style={styles.container}>
+      <Text style={styles.header}>Hi, {name}</Text>
+      <Text style={styles.detailheader}>User Details:</Text>
+      <Text style={styles.detail}>First Name: {Fn}</Text>
+      <Text style={styles.detail}>Last Name: {Ln}</Text>
+      <Text style={styles.detail}>Email ID: {email}</Text>
+      <Text style={styles.detail}>User ID: {showId}</Text>
       <LogoutButton title="Logout" />
     </View>
   );
@@ -25,17 +40,28 @@ const Profile = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    padding: 40,
-  },
-  inputField: {
-    marginVertical: 4,
-    height: 50,
-    borderWidth: 1,
-    borderColor: "#6c47ff",
-    borderRadius: 4,
-    padding: 10,
+    padding: 20,
     backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  header: {
+    fontSize: 24,
+    marginBottom: 20,
+    fontWeight: "bold",
+  },
+  detailheader: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 10,
+  },
+  detail: {
+    fontSize: 16,
+    marginBottom: 5,
+  },
+  buttonContainer: {
+    width: "50%",
+    marginTop: 20,
   },
 });
 
