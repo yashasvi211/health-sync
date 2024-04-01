@@ -1,30 +1,42 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
-import { Button } from "react-native-elements";
-import { Vibration } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  Vibration,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import ListComponet from "../../components/ListComponet";
+import ListComponent from "../../components/ListComponet";
+import { Link } from "expo-router";
 
 const App = () => {
-  const [pixel, setpixel] = useState(0);
+  const [pixel, setPixel] = useState(0);
 
   const incrementCount = () => {
     Vibration.vibrate(50);
-    setpixel(pixel + 1);
+    setPixel(pixel + 1);
+  };
+  const TopHeader = () => {
+    return (
+      <View style={styles.header}>
+        <Link href="/home" asChild>
+          <TouchableOpacity>
+            <Text style={styles.backButton}>Back</Text>
+          </TouchableOpacity>
+        </Link>
+        <Text style={styles.headerText}>Your Heading</Text>
+      </View>
+    );
   };
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <TouchableOpacity onPress={() => alert("Back button pressed")}>
-          <Text style={styles.headerText}>Back</Text>
-        </TouchableOpacity>
-        <Text style={styles.headerText}>Your Heading</Text>
-      </View>
+      <TopHeader />
       <View style={styles.content}>
-        <ListComponet />
-        <ListComponet />
-        <ListComponet />
+        <ListComponent />
+        <ListComponent />
+        <ListComponent />
       </View>
     </SafeAreaView>
   );
@@ -36,10 +48,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     elevation: 5,
     shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
+    shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
   },
@@ -48,21 +57,26 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     alignItems: "center",
     paddingHorizontal: 16,
-    paddingTop: 16,
-    paddingBottom: 8,
-    backgroundColor: "#fff", // background color for header
+    paddingVertical: 16,
+    backgroundColor: "#f5f5f5",
     borderBottomWidth: 1,
-    borderBottomColor: "#ccc", // border color for header bottom
+    borderBottomColor: "#ccc",
+  },
+  backButton: {
+    fontSize: 18,
+    color: "#007aff",
   },
   headerText: {
     fontSize: 20,
     fontWeight: "bold",
+    color: "#333",
   },
   content: {
     flex: 1,
     justifyContent: "center",
-    flexDirection: "row",
-    backgroundColor: "#f0f0f0", // background color for content area
+    flexDirection: "column",
+    backgroundColor: "#ffffff",
+    padding: 16,
   },
 });
 

@@ -1,13 +1,11 @@
 import React from "react";
 import { View, StyleSheet, Text, SafeAreaView } from "react-native";
 
-const ListComponet = ({ des, img }) => {
+const ListComponet = ({ disease, info }) => {
   return (
     <View style={styles.banner}>
-      <Text style={styles.text}>Doctor: </Text>
-      <Text style={styles.text}>Specialist:</Text>
-      <Text style={styles.text}>Date: </Text>
-      <Text style={styles.text}>Time: </Text>
+      <Text style={styles.header}>{disease}</Text>
+      <Text style={styles.text}>{info}</Text>
     </View>
   );
 };
