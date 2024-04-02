@@ -17,6 +17,7 @@ const App = () => {
     Vibration.vibrate(50);
     setPixel(pixel + 1);
   };
+
   const TopHeader = () => {
     return (
       <View style={styles.header}>
@@ -34,9 +35,12 @@ const App = () => {
     <SafeAreaView style={styles.container}>
       <TopHeader />
       <View style={styles.content}>
-        <ListComponent />
-        <ListComponent />
-        <ListComponent />
+        {/* Rendering ListComponent multiple times with different props */}
+        <ListComponent disease="Disease 1" info="Information about Disease 1" />
+
+        <ListComponent disease="Disease 2" info="Information about Disease 2" />
+        <ListComponent disease="Disease 2" info="Information about Disease 2" />
+        <ListComponent disease="Disease 3" info="Information about Disease 3" />
       </View>
     </SafeAreaView>
   );
@@ -72,11 +76,13 @@ const styles = StyleSheet.create({
     color: "#333",
   },
   content: {
-    flex: 1,
-    justifyContent: "center",
-    flexDirection: "column",
-    backgroundColor: "#ffffff",
-    padding: 16,
+    display: "flex",
+    flexDirection: "row",
+    backgroundColor: "green",
+
+    flexWrap: "wrap",
+    gap: 5,
+    alignItems: "flex-start",
   },
 });
 

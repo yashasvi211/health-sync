@@ -1,34 +1,37 @@
 import React from "react";
-import { View, StyleSheet, Text, SafeAreaView } from "react-native";
+import { View, StyleSheet, Text } from "react-native";
 
-const ListComponet = ({ disease, info }) => {
+const ListComponent = ({ disease, info }) => {
   return (
-    <View style={styles.banner}>
-      <Text style={styles.header}>{disease}</Text>
-      <Text style={styles.text}>{info}</Text>
+    <View style={styles.container}>
+      <View style={styles.banner}>
+        <Text style={styles.header}>{disease}</Text>
+        <Text style={styles.text}>{info}</Text>
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   banner: {
-    backgroundColor: "#FFFFFF",
-    borderRadius: 10,
-    margin: 10,
-    padding: 15,
-    elevation: 3,
-    shadowColor: "#000",
-    height: "30%",
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    borderRadius: 10,
-
-    width: "25%", // Remove this line
+    display: "flex",
+    backgroundColor: "#ffffff", // Background color of the box
+    padding: 16, // Padding around the content
+    borderRadius: 8, // Border radius to create rounded corners
+    borderWidth: 1, // Border width to create border
+    borderColor: "#cccccc", // Border color
+    width: 110,
+    height: 110,
+    justifyContent: "space-evenly",
+  },
+  header: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 8,
   },
   text: {
     fontSize: 16,
-    marginBottom: 8,
   },
 });
 
-export default ListComponet;
+export default ListComponent;
