@@ -16,21 +16,22 @@ const styles = StyleSheet.create({
   banner: {
     display: "flex",
     backgroundColor: "#ffffff", // Background color of the box
-    padding: 16, // Padding around the content
+    padding: 4, // Padding around the content
     borderRadius: 8, // Border radius to create rounded corners
     borderWidth: 1, // Border width to create border
     borderColor: "#cccccc", // Border color
     width: 110,
-    height: 110,
-    justifyContent: "space-evenly",
+    height: 150,
+    justifyContent: "",
+    elevation: 5,
   },
   header: {
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: "bold",
-    marginBottom: 8,
+    paddingBottom: 13,
   },
   text: {
-    fontSize: 16,
+    fontSize: 12,
   },
 });
 

@@ -5,6 +5,7 @@ import {
   StyleSheet,
   TouchableOpacity,
   Vibration,
+  ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import ListComponent from "../../components/ListComponet";
@@ -26,7 +27,7 @@ const App = () => {
             <Text style={styles.backButton}>Back</Text>
           </TouchableOpacity>
         </Link>
-        <Text style={styles.headerText}>Your Heading</Text>
+        <Text style={styles.headerText}>Categories</Text>
       </View>
     );
   };
@@ -34,14 +35,82 @@ const App = () => {
   return (
     <SafeAreaView style={styles.container}>
       <TopHeader />
-      <View style={styles.content}>
-        {/* Rendering ListComponent multiple times with different props */}
-        <ListComponent disease="Disease 1" info="Information about Disease 1" />
-
-        <ListComponent disease="Disease 2" info="Information about Disease 2" />
-        <ListComponent disease="Disease 2" info="Information about Disease 2" />
-        <ListComponent disease="Disease 3" info="Information about Disease 3" />
-      </View>
+      <ScrollView>
+        <View style={styles.content}>
+          <ListComponent
+            disease="Diabetes"
+            info="Endocrinologist. Specialized care for managing blood sugar."
+          />
+          <ListComponent
+            disease="Hypertensi-on"
+            info="Cardiologist. Heart and blood vessel health management."
+          />
+          <ListComponent
+            disease="Asthma"
+            info="Pulmonologist. Lung function assessment and treatment."
+          />
+          <ListComponent
+            disease="Cancer"
+            info="Oncologist. Diagnosis and treatment of cancerous tumors."
+          />
+          <ListComponent
+            disease="Depression"
+            info="Psychiatrist. Mental health evaluation and therapy provision."
+          />
+          <ListComponent
+            disease="Alzheimer's Disease"
+            info="Neurologist. Brain health assessment and dementia management."
+          />
+          <ListComponent
+            disease="Stroke"
+            info="Neurologist. Specialized care for brain blood flow issues."
+          />
+          <ListComponent
+            disease="Obesity"
+            info="Endocrinologist, Nutritionist. Weight management, lifestyle changes."
+          />
+          <ListComponent
+            disease="Arthritis"
+            info="Rheumatologist. Joint pain management and treatment."
+          />
+          <ListComponent
+            disease="Osteoporosis"
+            info="Orthopedist, Endocrinologist. Bone health management, fracture prevention."
+          />
+          <ListComponent
+            disease="HIV/AIDS"
+            info="Infectious Disease Specialist. Antiretroviral treatment, managing complications."
+          />
+          <ListComponent
+            disease="Parkinson's Disease"
+            info="Neurologist. Management of movement disorders and symptoms."
+          />
+          <ListComponent
+            disease="Epilepsy"
+            info="Neurologist, Epileptologist. Seizure diagnosis and management."
+          />
+          <ListComponent
+            disease=" Kidney Disease"
+            info="Nephrologist. Kidney function monitoring, treatment planning."
+          />
+          <ListComponent
+            disease="COPD"
+            info="Pulmonologist. Management of chronic lung disease symptoms."
+          />
+          <ListComponent
+            disease="Heart Disease"
+            info="Cardiologist. Heart health assessment and treatment planning."
+          />
+          <ListComponent
+            disease="Anxiety Disorders"
+            info="Psychiatrist, Therapist. Anxiety management, therapy provision."
+          />
+          <ListComponent
+            disease="Migraine"
+            info="Neurologist. Diagnosis and treatment of severe headaches."
+          />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -50,6 +119,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ffffff",
+
     elevation: 5,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
@@ -78,10 +148,12 @@ const styles = StyleSheet.create({
   content: {
     display: "flex",
     flexDirection: "row",
-    backgroundColor: "green",
+    backgroundColor: "#ffffff",
+    justifyContent: "center",
+    paddingTop: 12,
 
     flexWrap: "wrap",
-    gap: 5,
+    gap: 15,
     alignItems: "flex-start",
   },
 });

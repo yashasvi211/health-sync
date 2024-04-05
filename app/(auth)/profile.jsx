@@ -22,14 +22,14 @@ const Profile = () => {
   const Fn = user.firstName;
   const Ln = user.lastName;
   const email = user.primaryEmailAddress.emailAddress;
-  const showId = id.substring(5); // Extracting from the 6th character
+  const showId = id.substring(5);
 
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Hi, {name}</Text>
       <Text style={styles.detailheader}>User Details:</Text>
-      <Text style={styles.detail}>First Name: {Fn}</Text>
-      <Text style={styles.detail}>Last Name: {Ln}</Text>
+      {/* <Text style={styles.detail}>First Name: {Fn}</Text>
+      <Text style={styles.detail}>Last Name: {Ln}</Text> */}
       <Text style={styles.detail}>Email ID: {email}</Text>
       <Text style={styles.detail}>User ID: {showId}</Text>
       <LogoutButton title="Logout" />
