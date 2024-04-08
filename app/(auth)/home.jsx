@@ -51,8 +51,8 @@ const Home = () => {
       </View>
       <ScrollView horizontal={true}>
         <View style={styles.bannerContainer}>
-          <Banner imageUri={require("../../assets/doctor.webp")} />
-          <Banner imageUri={require("../../assets/doctor.webp")} />
+          <Banner imageUri={require("../../assets/a.png")} />
+          <Banner imageUri={require("../../assets/b.png")} />
           <Banner imageUri={require("../../assets/doctor.webp")} />
           <Banner imageUri={require("../../assets/doctor.webp")} />
         </View>

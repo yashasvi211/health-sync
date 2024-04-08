@@ -8,6 +8,7 @@ const History = () => {
     <ScrollView>
       <View style={styles.container}>
         <Text style={styles.heading}>Upcoming Bookings:</Text>
+        {/**update firebase */}
         <History_Card
           Name={"Dr. AP Sharma"}
           spa={"Oncologist"}
