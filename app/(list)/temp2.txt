@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+mport React, { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -9,33 +9,19 @@ import {
   Alert,
   ScrollView,
 } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 import { SafeAreaView } from "react-native-safe-area-context";
-import ListComponent from "../../components/ListComponet";
-import { Link } from "expo-router";
+
 import { initializeApp } from "firebase/app";
-import { getFirestore, setDoc, doc, Firestore } from "firebase/firestore";
-
+import {
+  getFirestore,
+  setDoc,
+  doc,
+  collection,
+  addDoc,
+  QuerySnapshot,
+} from "firebase/firestore";
+import { getDatabase } from "firebase/database";
 const App = () => {
-  const [pixel, setPixel] = useState(0);
-
-  const incrementCount = () => {
-    Vibration.vibrate(50);
-    setPixel(pixel + 1);
-  };
-
-  const TopHeader = () => {
-    return (
-      <View style={styles.header}>
-        <Link href="/home" asChild>
-          <TouchableOpacity>
-            <Text style={styles.backButton}>Back</Text>
-          </TouchableOpacity>
-        </Link>
-        <Text style={styles.headerText}>Categories</Text>
-      </View>
-    );
-  };
   const ShowAlert = () => {
     Alert.alert(
       "Complete",
@@ -44,7 +30,7 @@ const App = () => {
       { cancelable: false }
     );
   };
-  // --------------------------------------------------------
+
   const firebaseConfig = {
     apiKey: "AIzaSyDOcckDgNR3PETeXuxpQDjfjUi4-3qQnaQ",
     authDomain: "health-sync-cdc19.firebaseapp.com",
@@ -54,37 +40,50 @@ const App = () => {
     messagingSenderId: "240815674969",
     appId: "1:240815674969:web:b0934364bfe137f6fc4348",
   };
+
   initializeApp(firebaseConfig);
-  const sentdatatofirebase = async () => {
+
+  const sentDataToFirestore = async () => {
     const firestore = getFirestore();
-    await setDoc(doc(firestore, "user", "user_id"), {
-      phone: "123456789",
-      name: "Animesh Kumar",
-      age: 123,
+    try {
+      const newDoctorRef = await addDoc(collection(firestore, "doctors"), {
+        name: "Doctor Name",
+        specialist: "Crynocologyst",
+        rating: 0,
+        slots: [
+          { date: "2024-04-15", time: "09:00", booked: false },
+          { date: "2024-04-15", time: "10:00", booked: false },
+        ],
+      });
+      console.log("Document written with ID: ", newDoctorRef.id);
+      ShowAlert();
+    } catch (e) {
+      console.error("Error adding document: ", e);
+    }
+  };
+  const Fectch = () => {
+    cosnt[(users, setUsers)] = useState([]);
+    const docRef = firebase.firestore().collection("doctors");
+    useEffect(async () => {
+      docRef.onSnapshot((QuerySnapshot) => {
+        const user = [];
+        QuerySnapshot.forEach((doc) => {
+          const { heading, text } = doc.data();
+          user.push({
+            id: doc.id,
+            heading,
+          });
+        });
+      });
     });
   };
   return (
     <SafeAreaView style={styles.container}>
-      <TopHeader />
       <ScrollView>
-        <Button
-          title="Sent"
-          onPress={() => {
-            sentdatatofirebase();
-            ShowAlert();
-          }}
-        />
-
-        <View style={styles.content}>
-          <Link href="/doc_list" asChild>
-            <TouchableWithoutFeedback>
-              <ListComponent
-                disease="Diabetes"
-                info="Endocrinologist. Specialized care for managing blood sugar."
-              />
-            </TouchableWithoutFeedback>
-          </Link>
-        </View>
+        <Button title="Sent" onPress={sentDataToFirestore} />
+      <Flatlist>
+        
+      </Flatlist>
       </ScrollView>
     </SafeAreaView>
   );
@@ -94,7 +93,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#ffffff",
-
     elevation: 5,
     shadowColor: "#000",
     shadowOffset: { width: 0, height: 2 },
@@ -126,7 +124,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     justifyContent: "center",
     paddingTop: 12,
-
     flexWrap: "wrap",
     gap: 15,
     alignItems: "flex-start",
