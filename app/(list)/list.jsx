@@ -67,14 +67,6 @@ const App = () => {
     <SafeAreaView style={styles.container}>
       <TopHeader />
       <ScrollView>
-        <Button
-          title="Sent"
-          onPress={() => {
-            sentdatatofirebase();
-            ShowAlert();
-          }}
-        />
-
         <View style={styles.content}>
           <Link href="/doc_list" asChild>
             <TouchableWithoutFeedback>

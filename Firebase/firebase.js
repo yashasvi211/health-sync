@@ -20,11 +20,3 @@ const firebaseConfig = {
   appId: "1:240815674969:web:b0934364bfe137f6fc4348",
 };
 initializeApp(firebaseConfig);
-const sentdatatofirebase = async () => {
-  const firestore = getFirestore();
-  await setDoc(doc(firestore, "user", "user_id"), {
-    phone: "123456789",
-    name: "Animesh Kumar",
-    age: 123,
-  });
-};
