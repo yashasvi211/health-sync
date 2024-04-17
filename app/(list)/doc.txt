@@ -55,16 +55,16 @@ const App = () => {
   // Function to add dummy data
   const addDummyData = async () => {
     const db = getFirestore();
-    const doctorsCollection = collection(db, "doctors");
+    const doctorsCollection = collection(db, "gynecologists");
 
     const dummyDoctors = [
       {
-        name: "Piool Agori",
+        name: "Dr. Anuj Sharma",
         experience: 25,
         specialist: "Gynacolagist",
         address: "123456 Popopop",
         imageURL:
-          "https://imagesx.practo.com/providers/dr-nanda-rajaneesh-laparoscopic-surgeon-bangalore-88552925-3c16-4eaf-ba15-689083c94815.jpg?i_type=t_70x70",
+          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFSEadwAbj9MXCXdRr6p8PvgrbbU-P4ArkLdEKueRMLp3IKbPyafOUdLacog&s",
         reviews: "Good Doc",
         specializations: ["Laparoscopic Surgeon", "General Surgeon"],
         rewards: [
@@ -91,8 +91,6 @@ const App = () => {
           "2000 - 2002 Registrar at Manipal Hospital",
         ],
       },
-
-      // Add more doctors as needed
     ];
 
     dummyDoctors.forEach(async (doctor) => {
