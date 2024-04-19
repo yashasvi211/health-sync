@@ -128,7 +128,7 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   touchable: {
-    marginHorizontal: 10, // Adjust this value according to your preference
+    marginHorizontal: 10,  
   },
 });
 

@@ -38,7 +38,7 @@ const Home = () => {
       <TopHeader />
       <ScrollView>
         <View style={styles.content}>
-          <TouchableOpacity onPress={() => handlePress("gynocologists")}>
+          <TouchableOpacity onPress={() => handlePress("gynecologists")}>
             <ListComponent
               disease="Diabetes"
               info="Endocrinologist. Specialized care for managing blood sugar."

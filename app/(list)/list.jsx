@@ -4,6 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import Home from "./Home";
 import Detail from "./Detail";
 import Add from "./Add";
+import Info from "./Info";
 import { TouchableOpacity, Text } from "react-native";
 
 const Stack = createStackNavigator();
@@ -28,6 +29,11 @@ function AppStack() {
       <Stack.Screen
         name="Add"
         component={Add}
+        options={{ headerShown: true }}
+      />
+      <Stack.Screen
+        name="Info"
+        component={Info}
         options={{ headerShown: true }}
       />
     </Stack.Navigator>

@@ -1,3 +1,22 @@
+// import { View, Text } from "react-native";
+// import { useRoute } from "@react-navigation/native";
+
+// const Info = ({ route }) => {
+//   const { paramKey } = route.params;
+//   const db = route.params.db;
+
+//   return (
+//     <>
+//       <View>
+//         <Text>{paramKey}</Text>
+//         <Text>{db}</Text>
+//       </View>
+//     </>
+//   );
+// };
+
+// export default Info;
+
 import React, { useEffect, useState } from "react";
 import {
   View,
@@ -11,8 +30,7 @@ import {
 import { Link } from "expo-router";
 import { initializeApp } from "firebase/app";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
-
-import { useNavigation } from "@react-navigation/native";
+import { useNavigation } from "expo-router";
 const firebaseConfig = {
   apiKey: "AIzaSyDOcckDgNR3PETeXuxpQDjfjUi4-3qQnaQ",
   authDomain: "health-sync-cdc19.firebaseapp.com",
@@ -22,22 +40,22 @@ const firebaseConfig = {
   messagingSenderId: "240815674969",
   appId: "1:240815674969:web:b0934364bfe137f6fc4348",
 };
-
 initializeApp(firebaseConfig);
 
-const Detail = ({ route }) => {
+const Info = ({ route }) => {
   const navigation = useNavigation();
   if (!route.params || !route.params.paramKey) {
     return <Text>Error: Missing parameters</Text>;
   }
 
-  const specialist = route.params.paramKey;
+  const maindoc = route.params.paramKey;
+  const databasename = route.params.db;
   const [doctors, setDoctors] = useState([]);
 
   const fetchDoctors = async () => {
     try {
       const db = getFirestore();
-      const doctorsCollection = collection(db, specialist);
+      const doctorsCollection = collection(db, databasename);
       const querySnapshot = await getDocs(doctorsCollection);
       const fetchedDoctors = querySnapshot.docs.map((doc) => ({
         id: doc.id,
@@ -60,27 +78,23 @@ const Detail = ({ route }) => {
     if (doctors.length === 0) {
       return <Text>Loading...</Text>;
     }
-    return doctors.map((doctor) => (
-      <TouchableOpacity
-        style={styles.touchable}
-        key={doctor.id} // Unique key prop
-        onPress={() => {
-          handlePress(doctor.id, specialist);
-        }}
-      >
-        <View style={styles.doctorContainer}>
-          <View style={styles.infoContainer}>
-            <Text style={styles.name}>{doctor.name}</Text>
-            <Text style={styles.specialist}>{doctor.specialist}</Text>
-            <Text style={styles.phone}>
-              Experience of {doctor.experience} years.
-            </Text>
-          </View>
-          <View style={styles.imageContainer}>
-            <Image source={{ uri: doctor.imageURL }} style={styles.image} />
-          </View>
+
+    const filteredDoctors = doctors.filter((doctor) => doctor.id === maindoc);
+
+    return filteredDoctors.map((doctor) => (
+      <View style={styles.doctorContainer} key={doctor.id}>
+        <View style={styles.infoContainer}>
+          <Text style={styles.name}>{doctor.name}</Text>
+          <Text style={styles.name}>{doctor.id}</Text>
+          <Text style={styles.specialist}>{doctor.specialist}</Text>
+          <Text style={styles.phone}>
+            Experience of {doctor.experience} years.
+          </Text>
         </View>
-      </TouchableOpacity>
+        <View style={styles.imageContainer}>
+          <Image source={{ uri: doctor.imageURL }} style={styles.image} />
+        </View>
+      </View>
     ));
   };
 
@@ -90,7 +104,6 @@ const Detail = ({ route }) => {
     </SafeAreaView>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -148,4 +161,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Detail;
+export default Info;
