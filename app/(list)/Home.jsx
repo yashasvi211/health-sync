@@ -38,20 +38,47 @@ const Home = () => {
       <TopHeader />
       <ScrollView>
         <View style={styles.content}>
-          <TouchableOpacity onPress={() => handlePress("gynecologists")}>
+          <TouchableOpacity onPress={() => handlePress("dermatologist")}>
             <ListComponent
-              disease="Diabetes"
+              specialty="Dermatolog-ist"
               info="Endocrinologist. Specialized care for managing blood sugar."
             />
           </TouchableOpacity>
-          <TouchableOpacity onPress={() => handlePress("nurologist")}>
+          <TouchableOpacity onPress={() => handlePress("dentist")}>
             <ListComponent
-              disease="Diabetes"
-              info="Endocrinologist. Specialized care for managing blood sugar."
+              specialty="Dentist"
+              info="Specialized care for oral health, including teeth, gums, and mouth."
             />
           </TouchableOpacity>
+          <TouchableOpacity onPress={() => handlePress("homeopath")}>
+            <ListComponent
+              specialty="Homeopathy"
+              info="Natural healing with diluted substances."
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handlePress("ayurveda")}>
+            <ListComponent
+              specialty="Ayurveda"
+              info="Ancient holistic medicine system."
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => handlePress("general surgeon")}>
+            <ListComponent
+              specialty="General Surgeon"
+              info="Performs surgical procedures for various conditions."
+            />
+          </TouchableOpacity>
+
+          <TouchableOpacity onPress={() => handlePress("general physician")}>
+            <ListComponent
+              specialty="General Physician"
+              info="Primary care for diverse health issues."
+            />
+          </TouchableOpacity>
+
+          {/* ---------------------- */}
           <TouchableOpacity onPress={() => navigation.navigate("Add")}>
-            <ListComponent disease="Add Doc" />
+            <ListComponent specialty="Add Doc" />
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -92,6 +119,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: "#ccc",
   },
+
   backButton: {
     fontSize: 18,
     color: "#007aff",

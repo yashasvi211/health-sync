@@ -9,15 +9,15 @@ import {
   ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { initializeApp } from "@firebase/app";
+import { initializeApp } from "firebase/app";
 import {
   getFirestore,
   collection,
   addDoc,
   doc,
-  setDoc,
   getDocs,
-} from "@firebase/firestore";
+} from "firebase/firestore";
+
 const firebaseConfig = {
   apiKey: "AIzaSyDOcckDgNR3PETeXuxpQDjfjUi4-3qQnaQ",
   authDomain: "health-sync-cdc19.firebaseapp.com",
@@ -28,6 +28,7 @@ const firebaseConfig = {
   appId: "1:240815674969:web:b0934364bfe137f6fc4348",
 };
 initializeApp(firebaseConfig);
+
 const Add = () => {
   const [doctors, setDoctors] = useState([]);
 
@@ -48,41 +49,26 @@ const Add = () => {
 
   const addDummyData = async () => {
     const db = getFirestore();
-    const specialist = "gynecologists";
+    const specialist = "dermatologist";
     const doctorsCollection = collection(db, specialist);
 
     const dummyDoctors = [
       {
-        name: "Dr. Anuj Sharma",
-        experience: 25,
-        specialist: "Gynacolagist",
-        address: "123456 Popopop",
+        name: "Dr. Ravikant Chauhan",
+        experience: 15,
+        specialist: "Dermatologist",
+        address:
+          "229, 7th Main Rd, HRBR Layout 2nd Block, HRBR Layout, Kalyan Nagar, Bengaluru, Karnataka 560043, India, Landmark: Near Bosch Showroom, Bangalore",
         imageURL:
-          "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFSEadwAbj9MXCXdRr6p8PvgrbbU-P4ArkLdEKueRMLp3IKbPyafOUdLacog&s",
-        reviews: "Good Doc",
-        specializations: ["Laparoscopic Surgeon", "General Surgeon"],
-        rewards: [
-          "Travel Award At International Gastrointestinal Conference In Barcelona - 2013",
-          "Trained In Advanced Laparoscopic Surgery Coimbatore In July - 2004",
-          "Trained In Laparoscopic Bariatric Surgery In Belgium With Dr. Luc Lehmans, A Renowned Surgeon For Hand Sewn Anastomoses. At Az Nikolas Hospital, Belgium In - 2007",
-          "Surgical Programme At University Of Hospital Heidelberg, Germany (Pancreatic Cancer Referral Centre) - 2005",
-          "Got Scholarship To Attend Workshop On Research Ethics At Harvard University Boston",
-        ],
+          "https://imagesx.practo.com/providers/dr-ravikant-chauhan-dermatologist-bangalore-eb64eebd-ff29-4048-bfb4-f58d0cac4a28.jpg?i_type=t_70x70",
+        rewards: ["IADVL - 2014"],
         description:
-          "MBBS, MS - General Surgery, Training in Surgical Oncology G.I. Oncology " +
-          "Laparoscopic Surgeon, General Surgeon, Proctologist, Bariatric Surgeon " +
-          "29 Years Experience Overall, 24 years as a specialist",
+          "Dr. Ravikant Chauhan has special interest hair transplantation, dermatosurgery, and cosmetic dermatology. Believes in minimalistic approach towards aesthetic concerns.",
         contact: "+91 80471 86783",
         extension: "Ext. 110",
         education: [
-          "MBBS - Kevempu University, 1995",
-          "MS - General Surgery - Rajiv Gandhi University of Health Sciences, 2000",
-          "Training in Surgical Oncology (G.I. Oncology) - Tata Memorial Hospital, Mumbai, 2003",
-        ],
-        history: [
-          "2009 - 2013 Vice-President Medical Service & GI Laproscopic surgeon at Nova Specialty Surgery",
-          "2002 - 2009 Department of General Surgery at St. John's Medical College Hospital Bangalore",
-          "2000 - 2002 Registrar at Manipal Hospital",
+          "MBBS - Dr B R Ambedkar medical college, 2009",
+          "DDVL - Father Muller Medical College, Mangalore, 2015",
         ],
       },
     ];

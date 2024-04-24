@@ -1,11 +1,12 @@
 import React from "react";
 import { View, StyleSheet, Text } from "react-native";
 
-const ListComponent = ({ disease, info }) => {
+const ListComponent = ({ specialty, info }) => {
   return (
     <View style={styles.container}>
       <View style={styles.banner}>
-        <Text style={styles.header}>{disease}</Text>
+        <Text style={styles.header}>{specialty}</Text>
+
         <Text style={styles.text}>{info}</Text>
       </View>
     </View>
